@@ -1,0 +1,69 @@
+{
+  "app_title": "LLM-CL Educational Demonstration",
+  "app_subtitle": "Exploring the Large Language Model Communication Language",
+  
+  "tab_tutorial": "Tutorial",
+  "tab_encoder_decoder": "Encoder/Decoder",
+  "tab_compiler": "Compiler",
+  "tab_chatbot": "Chatbot Comparison",
+  
+  "language_selector": "Language",
+  "language_en": "English",
+  "language_zh": "中文",
+  
+  "tutorial_prev": "Previous",
+  "tutorial_next": "Next",
+  
+  "encoder_section": "Natural Language to LLM-CL Encoder",
+  "nl_input_label": "Natural Language Input",
+  "nl_input_placeholder": "Enter your question or statement...",
+  "encode_button": "Encode to LLM-CL",
+  "llmcl_output_label": "LLM-CL Output",
+  
+  "decoder_section": "LLM-CL to Natural Language Decoder",
+  "llmcl_input_label": "LLM-CL Input",
+  "llmcl_input_placeholder": "Enter LLM-CL code...",
+  "decode_button": "Decode to Natural Language",
+  "nl_output_label": "Natural Language Output",
+  
+  "token_stats": "Token Statistics",
+  "nl_tokens": "Natural Language Tokens:",
+  "llmcl_tokens": "LLM-CL Tokens:",
+  "token_reduction": "Token Reduction:",
+  
+  "visualization_title": "LLM-CL Structure Visualization",
+  "tree_view": "Hierarchical Tree View",
+  "token_distribution": "Token Distribution",
+  
+  "compiler_section": "LLM-CL Compiler",
+  "compiler_input_label": "LLM-CL Input",
+  "compiler_input_placeholder": "Enter LLM-CL code to compile...",
+  "compile_button": "Compile",
+  
+  "lexical_analysis": "Lexical Analysis (Tokenization)",
+  "syntax_analysis": "Syntax Analysis (Parsing)",
+  "ir_generation": "Intermediate Representation",
+  "code_generation": "Generated Code",
+  
+  "compiler_visualization": "Compilation Process",
+  
+  "standard_llm_chat": "Standard LLM Chat",
+  "llmcl_chat": "LLM-CL Enhanced Chat",
+  "chat_input_placeholder": "Type your message...",
+  "chat_send": "Send",
+  
+  "performance_metrics": "Performance Metrics",
+  "response_time": "Response Time:",
+  "tokens_used": "Tokens Used:",
+  
+  "ai_assist": "AI Assist",
+  "ai_assist_prompt": "What would you like help with?",
+  "ai_assist_option1": "Fix syntax errors",
+  "ai_assist_option2": "Optimize for token efficiency",
+  "ai_assist_option3": "Add semantic precision",
+  "ai_assist_option4": "Convert from natural language",
+  "ai_assist_cancel": "Cancel",
+  "ai_assist_submit": "Submit",
+  
+  "footer_text": "© 2025 DeepSeek Labs • LLM-CL Open Specification"
+}

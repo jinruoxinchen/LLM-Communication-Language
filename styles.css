@@ -1,0 +1,175 @@
+/* LLM-CL Educational Demonstration Styles */
+
+/* Tab Styling */
+.tab-button {
+    border-bottom: 2px solid transparent;
+}
+
+.tab-button.active {
+    background-color: #f3f4f6;
+    border-bottom: 2px solid #4f46e5;
+    font-weight: 600;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* Code Highlighting */
+.token-concept {
+    color: #2563eb; /* Blue */
+    font-weight: 600;
+}
+
+.token-relation {
+    color: #7c3aed; /* Purple */
+}
+
+.token-quantifier {
+    color: #059669; /* Green */
+}
+
+.token-reference {
+    color: #d97706; /* Amber */
+}
+
+.token-operator {
+    color: #ef4444; /* Red */
+}
+
+.token-structural {
+    color: #6b7280; /* Gray */
+}
+
+/* Chat Messages */
+.message {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    max-width: 80%;
+}
+
+.message-user {
+    background-color: #e0f2fe;
+    margin-left: auto;
+    border-top-right-radius: 0;
+}
+
+.message-bot {
+    background-color: #f3f4f6;
+    margin-right: auto;
+    border-top-left-radius: 0;
+}
+
+/* Tutorial Styles */
+.tutorial-step {
+    display: none;
+}
+
+.tutorial-step.active {
+    display: block;
+}
+
+/* Interactive elements */
+.interactive-element {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: #f9fafb;
+}
+
+.interactive-element:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Examples */
+.example-container {
+    border-left: 3px solid #4f46e5;
+    padding-left: 1rem;
+    margin: 1rem 0;
+}
+
+/* CodeMirror customization */
+.CodeMirror {
+    height: 8rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+/* Animations */
+@keyframes highlight {
+    0% { background-color: rgba(79, 70, 229, 0.2); }
+    100% { background-color: transparent; }
+}
+
+.highlight {
+    animation: highlight 2s;
+}
+
+/* Progress Bar */
+.progress-bar {
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+    height: 0.5rem;
+}
+
+/* Tooltips */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    border-bottom: 1px dotted #6b7280;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #1f2937;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Visualizations */
+.node circle {
+    fill: #fff;
+    stroke: #4f46e5;
+    stroke-width: 1.5px;
+}
+
+.node text {
+    font: 12px sans-serif;
+}
+
+.link {
+    fill: none;
+    stroke: #999;
+    stroke-width: 1.5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .message {
+        max-width: 90%;
+    }
+}

@@ -1,0 +1,69 @@
+{
+  "app_title": "LLM-CL 教育演示",
+  "app_subtitle": "探索大语言模型通信语言",
+  
+  "tab_tutorial": "教程",
+  "tab_encoder_decoder": "编码器/解码器",
+  "tab_compiler": "编译器",
+  "tab_chatbot": "聊天机器人比较",
+  
+  "language_selector": "语言",
+  "language_en": "English",
+  "language_zh": "中文",
+  
+  "tutorial_prev": "上一步",
+  "tutorial_next": "下一步",
+  
+  "encoder_section": "自然语言到 LLM-CL 编码器",
+  "nl_input_label": "自然语言输入",
+  "nl_input_placeholder": "输入您的问题或陈述...",
+  "encode_button": "编码为 LLM-CL",
+  "llmcl_output_label": "LLM-CL 输出",
+  
+  "decoder_section": "LLM-CL 到自然语言解码器",
+  "llmcl_input_label": "LLM-CL 输入",
+  "llmcl_input_placeholder": "输入 LLM-CL 代码...",
+  "decode_button": "解码为自然语言",
+  "nl_output_label": "自然语言输出",
+  
+  "token_stats": "标记统计",
+  "nl_tokens": "自然语言标记：",
+  "llmcl_tokens": "LLM-CL 标记：",
+  "token_reduction": "标记减少：",
+  
+  "visualization_title": "LLM-CL 结构可视化",
+  "tree_view": "层次树视图",
+  "token_distribution": "标记分布",
+  
+  "compiler_section": "LLM-CL 编译器",
+  "compiler_input_label": "LLM-CL 输入",
+  "compiler_input_placeholder": "输入要编译的 LLM-CL 代码...",
+  "compile_button": "编译",
+  
+  "lexical_analysis": "词法分析（标记化）",
+  "syntax_analysis": "语法分析（解析）",
+  "ir_generation": "中间表示",
+  "code_generation": "生成的代码",
+  
+  "compiler_visualization": "编译过程",
+  
+  "standard_llm_chat": "标准 LLM 聊天",
+  "llmcl_chat": "LLM-CL 增强聊天",
+  "chat_input_placeholder": "输入您的消息...",
+  "chat_send": "发送",
+  
+  "performance_metrics": "性能指标",
+  "response_time": "响应时间：",
+  "tokens_used": "使用的标记：",
+  
+  "ai_assist": "AI 辅助",
+  "ai_assist_prompt": "您需要什么帮助？",
+  "ai_assist_option1": "修复语法错误",
+  "ai_assist_option2": "优化标记效率",
+  "ai_assist_option3": "增加语义精度",
+  "ai_assist_option4": "从自然语言转换",
+  "ai_assist_cancel": "取消",
+  "ai_assist_submit": "提交",
+  
+  "footer_text": "© 2025 DeepSeek Labs • LLM-CL 开放规范"
+}

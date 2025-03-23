@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM-CL Educational Demonstration</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-center text-indigo-700">LLM Communication Language</h1>
+            <p class="text-center text-gray-600 mt-2">An educational demonstration of efficient AI-to-AI communication</p>
+            
+            <!-- Language Selector -->
+            <div class="flex justify-end mt-2">
+                <select id="language-selector" class="bg-white border border-gray-300 rounded px-3 py-1">
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="es">Español</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="flex border-b border-gray-300 mb-6">
+            <button class="tab-button active px-4 py-2 mr-2 rounded-t" data-tab="encoder-decoder">Encoder/Decoder</button>
+            <button class="tab-button px-4 py-2 mr-2 rounded-t" data-tab="compiler">Compiler</button>
+            <button class="tab-button px-4 py-2 mr-2 rounded-t" data-tab="chatbot">LLM vs LLM-CL Chatbot</button>
+            <button class="tab-button px-4 py-2 rounded-t" data-tab="tutorial">Interactive Tutorial</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Encoder/Decoder Tab -->
+            <div id="encoder-decoder" class="tab-pane active">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Natural Language to LLM-CL -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-semibold mb-4">Natural Language → LLM-CL</h2>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2">Input Natural Language:</label>
+                            <textarea id="nl-input" class="w-full h-32 p-2 border border-gray-300 rounded"></textarea>
+                        </div>
+                        <button id="encode-button" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Encode</button>
+                        <div class="mt-4">
+                            <label class="block text-gray-700 mb-2">LLM-CL Output:</label>
+                            <div id="llmcl-output" class="w-full h-40 p-2 border border-gray-300 rounded overflow-auto bg-gray-50 font-mono"></div>
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-lg font-semibold mb-2">Token Comparison</h3>
+                            <div id="token-comparison" class="p-4 bg-gray-50 rounded border border-gray-300">
+                                <div class="flex justify-between mb-2">
+                                    <span>Natural Language:</span>
+                                    <span id="nl-token-count">0 tokens</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>LLM-CL:</span>
+                                    <span id="llmcl-token-count">0 tokens</span>
+                                </div>
+                                <div class="mt-2 text-right text-green-600 font-semibold">
+                                    <span id="token-reduction">0% reduction</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LLM-CL to Natural Language -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-semibold mb-4">LLM-CL → Natural Language</h2>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2">Input LLM-CL:</label>
+                            <div id="llmcl-editor-container">
+                                <textarea id="llmcl-input" class="w-full h-32 p-2 border border-gray-300 rounded"></textarea>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button id="decode-button" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Decode</button>
+                            <button id="ai-assist-button" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">AI Assist</button>
+                        </div>
+                        <div class="mt-4">
+                            <label class="block text-gray-700 mb-2">Natural Language Output:</label>
+                            <div id="nl-output" class="w-full h-40 p-2 border border-gray-300 rounded overflow-auto bg-gray-50"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visualization Section -->
+                <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-4">LLM-CL Structure Visualization</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Hierarchical Structure</h3>
+                            <div id="tree-visualization" class="w-full h-80 border border-gray-300 rounded bg-gray-50"></div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Token Analysis</h3>
+                            <div id="token-visualization" class="w-full h-80 border border-gray-300 rounded bg-gray-50"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compiler Tab -->
+            <div id="compiler" class="tab-pane hidden">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-4">LLM-CL Compiler</h2>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Input LLM-CL Code:</label>
+                        <div id="compiler-input-container">
+                            <textarea id="compiler-input" class="w-full h-32 p-2 border border-gray-300 rounded"></textarea>
+                        </div>
+                    </div>
+                    <button id="compile-button" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Compile</button>
+                    
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Lexical Analysis (Tokens)</h3>
+                            <div id="lexical-output" class="w-full h-40 p-2 border border-gray-300 rounded overflow-auto bg-gray-50 font-mono"></div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Syntax Analysis (AST)</h3>
+                            <div id="syntax-output" class="w-full h-40 p-2 border border-gray-300 rounded overflow-auto bg-gray-50 font-mono"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Intermediate Representation</h3>
+                            <div id="ir-output" class="w-full h-40 p-2 border border-gray-300 rounded overflow-auto bg-gray-50 font-mono"></div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Generated Code</h3>
+                            <div id="generated-output" class="w-full h-40 p-2 border border-gray-300 rounded overflow-auto bg-gray-50 font-mono"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h3 class="text-lg font-semibold mb-2">Compilation Process Visualization</h3>
+                        <div id="compiler-visualization" class="w-full h-60 border border-gray-300 rounded bg-gray-50"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chatbot Tab -->
+            <div id="chatbot" class="tab-pane hidden">
+                <!-- DeepSeek API Configuration -->
+                <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                    <h2 class="text-xl font-semibold mb-4">DeepSeek API Configuration</h2>
+                    <p class="mb-4 text-gray-700">To use the real DeepSeek API for chatbot comparison, you'll need to provide your API key. Your key is stored locally in your browser and never sent to our servers.</p>
+                    
+                    <div class="flex items-center space-x-2">
+                        <input type="text" id="deepseek-api-key" class="flex-1 p-2 border border-gray-300 rounded" placeholder="Enter your DeepSeek API key...">
+                        <button id="save-api-key" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Save</button>
+                    </div>
+                    <div id="api-key-status" class="mt-2 text-red-600 text-sm">API Key: ✗ Missing</div>
+                    
+                    <div class="mt-2 text-sm text-gray-600">
+                        <p>Don't have a DeepSeek API key? <a href="https://deepseek.com/" target="_blank" class="text-indigo-600 hover:underline">Get one here</a>. The demonstration will fall back to simulated responses if no API key is provided.</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Regular LLM Chat -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-semibold mb-4">Regular LLM Chat</h2>
+                        <div id="llm-chat-messages" class="w-full h-80 p-2 border border-gray-300 rounded overflow-auto bg-gray-50 mb-4"></div>
+                        <div class="flex">
+                            <input id="llm-chat-input" type="text" class="flex-1 p-2 border border-gray-300 rounded-l" placeholder="Type your message...">
+                            <button id="llm-chat-send" class="bg-indigo-600 text-white px-4 py-2 rounded-r hover:bg-indigo-700">Send</button>
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-sm font-semibold">Performance Metrics</h3>
+                            <div id="llm-metrics" class="text-sm text-gray-600">
+                                <div>Response time: <span id="llm-response-time">-</span></div>
+                                <div>Tokens used: <span id="llm-tokens-used">-</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LLM-CL Chat -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-semibold mb-4">LLM-CL Enhanced Chat</h2>
+                        <div id="llmcl-chat-messages" class="w-full h-80 p-2 border border-gray-300 rounded overflow-auto bg-gray-50 mb-4"></div>
+                        <div class="flex">
+                            <input id="llmcl-chat-input" type="text" class="flex-1 p-2 border border-gray-300 rounded-l" placeholder="Type your message...">
+                            <button id="llmcl-chat-send" class="bg-indigo-600 text-white px-4 py-2 rounded-r hover:bg-indigo-700">Send</button>
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-sm font-semibold">Performance Metrics</h3>
+                            <div id="llmcl-metrics" class="text-sm text-gray-600">
+                                <div>Response time: <span id="llmcl-response-time">-</span></div>
+                                <div>Tokens used: <span id="llmcl-tokens-used">-</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-4">Performance Comparison</h2>
+                    <div id="chatbot-comparison" class="w-full h-60 border border-gray-300 rounded bg-gray-50"></div>
+                </div>
+            </div>
+
+            <!-- Interactive Tutorial Tab -->
+            <div id="tutorial" class="tab-pane hidden">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-4">Interactive LLM-CL Tutorial</h2>
+                    
+                    <div class="progress-bar mb-6">
+                        <div id="tutorial-progress" class="bg-indigo-600 h-2 rounded" style="width: 0%"></div>
+                    </div>
+                    
+                    <div id="tutorial-container">
+                        <!-- Tutorial content will be dynamically loaded here -->
+                        <div id="tutorial-content" class="mb-6">
+                            <h3 class="text-lg font-semibold mb-2">Welcome to LLM-CL Tutorial</h3>
+                            <p class="mb-4">This interactive tutorial will guide you through the fundamentals of LLM Communication Language, a specialized artificial language designed for efficient and precise communication between Large Language Models.</p>
+                            <p>LLM-CL optimizes for the unique capabilities and constraints of LLMs, emphasizing semantic clarity, unambiguity, and information density while minimizing token usage and computational overhead.</p>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <button id="tutorial-prev" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 disabled:opacity-50" disabled>Previous</button>
+                            <button id="tutorial-next" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for AI assistance -->
+    <div id="ai-assist-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-2xl">
+            <h2 class="text-xl font-semibold mb-4">AI Assistance</h2>
+            <p class="mb-4">What would you like help with?</p>
+            <div class="mb-4">
+                <button class="ai-assist-option bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded mr-2 mb-2">Fix syntax errors</button>
+                <button class="ai-assist-option bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded mr-2 mb-2">Optimize for token efficiency</button>
+                <button class="ai-assist-option bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded mr-2 mb-2">Convert natural language</button>
+                <button class="ai-assist-option bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded mr-2 mb-2">Add semantic precision</button>
+                <button class="ai-assist-option bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded mr-2 mb-2">Explain this code</button>
+            </div>
+            <div class="mb-4">
+                <textarea id="ai-assist-prompt" class="w-full h-20 p-2 border border-gray-300 rounded" placeholder="Describe what you need help with..."></textarea>
+            </div>
+            <div class="flex justify-end">
+                <button id="ai-assist-cancel" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 mr-2">Cancel</button>
+                <button id="ai-assist-submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="encoder-decoder.js"></script>
+    <script src="compiler.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="tutorial.js"></script>
+    <script src="visualization.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
